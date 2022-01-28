@@ -1,0 +1,21 @@
+* {
+    font-family: 'Antonio', sans-serif;
+    color:ghostwhite;
+}
+
+body {
+    background-color: black;
+    padding: 20px;
+}
+
+#navbar{
+    height: 80px;
+}
+
+#titles{
+    height: 50px;
+}
+
+#shows{
+    height: 400px;
+}
