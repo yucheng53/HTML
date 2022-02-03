@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I hope this works!!</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <button onclick="clickevent()">Test button</button>
+    <button onclick="clickevent2()">Test2 button</button>
+    <div id='testdiv' class='reddivs'></div>
+    <div class='reddivs'></div>
+    <div class='reddivs'></div>
+    <input type="text" id='name' name='name' placeholder="bob">
+    <script src='script.js'></script>
+</body>
+</html>
+
+.reddivs{
+    background-color: firebrick;
+    width: 100px;
+    height: 100px;
+    display: inline-block;
+}
+
+//var mybutton = document.querySelecttor('button')
+var testdiv = document.querySelector('#testdiv')
+var reddivs = document.getElementsByClassName('reddivs')
+console.log(reddivs)
+console.log(reddivs.length)
+var input = document.querySelector('#name')
+
+testdiv.addEventListener('click',whoami)
+
+function clickevent(){
+    
+    testdiv.innerText = input.value
+    testdiv.style.backgroundColor = 'purple'
+    
+}
+function clickevent2(){
+    console.log(reddivs)
+    for(var i =0;i<reddivs.length;i++){
+
+        reddivs[i].style.backgroundColor = 'green'
+    }
+}
+function whoami(){
+    console.log(this)
+
+}
+function help(){
+    testdiv.whoami()
+}
+
+Instructor_ChrisT — 2022/01/31
+@cohort-NicholeK 🏫 Todays video links (you tube is still processing them so it may be a bit before there finished)
+PRE-ALGO: https://youtu.be/g-Emrd2Ir98
+POST-ALGO: https://youtu.be/SbIBe16sGOY
+FIX-NODE: https://youtu.be/3aMbw2m75xw
+Lecture on DOM Manipulation: https://youtu.be/Q8tKgaQmsi0
+demo on Magic 8 ball: https://youtu.be/s-xRWxMENdQ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magic 8 Ball</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="ball">
+        <div class="answer">
+            <p>What do you want to know?</p>
+            <button>Shake</button>
+        </div>
+        <div id ='timediv' class='time'></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
+
+.ball{
+    background-color: black;
+    border-radius: 50%;
+    width: 500px;
+    height: 500px;
+
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.time{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: black;
+    position: relative;
+
+}
+.answer{
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    
+    width: 100px;
+    height: 100px;
+    background-color: indigo;
+    color: ivory;
+}
+
+ var lifesAnswers = [
+        "It is certain.",
+        "It is decidedly so.",
+        "Without a doubt.",
+        "Yes – definitely.",
+        "You may rely on it.",
+        "As I see it, yes.",
+        "Most likely.",
+        "Outlook good.",
+        "Yes.",
+        "Signs point to yes.",
+        "Reply hazy, try again.",
+        "Ask again later.",
+        "Better not tell you now.",
+        "Cannot predict now.",
+        "Concentrate and ask again.",
+        "Don't count on it.",
+        "My reply is no.",
+        "My sources say no.",
+        "Outlook not so good.",
+        "Very doubtful."
+    ];
+    var answer = document.querySelector('.answer p')
+    var mybutton = document.querySelector('button')
+    var timer = 1000;
+    var timediv = document.getElementById('timediv')
+    var timedivx = -125;
+    mybutton.addEventListener('click',mydelay)
+    timediv.style.left = ""+ timedivx + 'px';
+    
+    function mydelay(){
+        timediv.style.left = '-125px';
+        timedivx = -125;
+        timediv.style.backgroundColor = 'red';
+        movediv()
+        setTimeout(shake,2000)
+    }
+    
+    function movediv(time = timer){
+        if(time > 100){
+           
+            setTimeout(movediv,200,time-100)
+            }
+        else{
+            timediv.style.backgroundColor='black';
+        }
+            timedivx += 25;
+        timediv.style.left = ""+ timedivx + 'px';
+        // console.log('timer:' , time)
+    }
+    
+    
+    function shake(){
+        var rand = Math.floor(Math.random()*lifesAnswers.length)
+        
+        answer.innerHTML = lifesAnswers[rand]
+        
+        
+        // var newtext = document.createTextNode(lifesAnswers[rand])
+        // answer.appendChild(newtext)
+    }
+
+
